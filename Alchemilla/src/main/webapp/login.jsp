@@ -7,8 +7,8 @@
 						<b>Usuario</b>
 					</div>
 					<div class="col">
-						<input type="text" placeholder="Ingrese su Usuario"
-							name ="username" required>						
+						<input type="text" placeholder="Nombre de Usuario"
+							name ="nombreDeUsuario" required>						
 					</div>
 				</div>
 				<div class="row">
