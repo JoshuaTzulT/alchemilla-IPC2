@@ -8,7 +8,7 @@
 					</div>
 					<div class="col">
 						<input type="text" placeholder="Nombre de Usuario"
-							name ="nombreDeUsuario" required>						
+							name ="nombre_de_usuario" required>						
 					</div>
 				</div>
 				<div class="row">
@@ -23,7 +23,7 @@
 				<div class="row">
 					<div class="col"></div>
 					<div class ="col">
-						<p class="login_error"><%=request.getAttribute("error") == null ? "": request.getAttribute("err")%>
+						<p class="login_error"><%=request.getAttribute("error") == null ? "": request.getAttribute("error")%>
                                                 </p>   
                                                 <button type="submit">Ingresar</button>
                                         </div>
