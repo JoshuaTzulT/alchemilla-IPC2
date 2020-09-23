@@ -6,8 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import proyecto.alchemilla.transferencias.Usuario;
+import java.util.Set;
+import proyecto.alchemilla.entidades.Usuario;
+import proyecto.alchemilla.entidades.Medico;
+import proyecto.alchemilla.entidades.CitaMedica;
 
 public class UsuarioQuerys {
     
@@ -46,6 +50,54 @@ public class UsuarioQuerys {
             u.setAlias(rs.getString("alias"));
             list.add(u);
         
+        }
+        return list;
+    }
+    
+    public static List<Medico> getListaMedico(Connection con) throws SQLException{
+        String query = "SELECT nombre,"
+                        + " dpi,"
+                        + "email, "
+                        + "numero_colegiado, "
+                        + "especialidad, "
+                        + "horario_atencion_inicio, "
+                        + "horario_atencion_final, "
+                        + "fecha_inicio "
+                        + "FROM medico";
+        
+        PreparedStatement stm = con.prepareStatement(query);
+        ResultSet rs = stm.executeQuery();
+        
+        List<Medico>list = new ArrayList<Medico>();
+        while(rs.next()){
+            Medico m = new Medico();
+            m.setNombre(rs.getString("nombre"));
+            m.setDpi(rs.getInt("dpi"));
+            m.setEmail(rs.getString("Email"));
+            m.setNumeroDeColegiado(rs.getString("numero_colegiado"));
+            m.setEspecialidad(rs.getString("especialidad"));
+            m.setHorarioDeAtencion(rs.getString("horario_atencion_inicio"));
+            m.setFechaDeInicio(rs.getString("fecha_inicio"));
+            list.add(m);    
+        }
+        return list;
+    }
+    
+    public static List<CitaMedica> getListaCita(Connection con) throws SQLException{
+        String query = "SELECT id_paciente, "
+                      + "id_medico,"
+                      + "fecha_hora,"
+                      + "estado "
+                      +"FROM cita_medica";
+        PreparedStatement stm = con.prepareStatement(query);
+        ResultSet rs = stm.executeQuery();
+        
+        List<CitaMedica>list = new ArrayList<CitaMedica>();
+        while(rs.next()){
+            CitaMedica cm = new CitaMedica();
+            cm.setIdPaciente(rs.getInt("id_paciente"));
+            cm.setIdMedico(rs.getInt("id_medico"));
+            list.add(cm);
         }
         return list;
     }

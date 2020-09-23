@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package proyecto.alchemilla.accion;
 
 import java.io.IOException;
@@ -14,9 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import proyecto.alchemilla.conexion.Conexion;
+import proyecto.alchemilla.conexion.Encriptar;
 import proyecto.alchemilla.querys.UsuarioQuerys;
 
-import proyecto.alchemilla.transferencias.Usuario;
+import proyecto.alchemilla.entidades.Usuario;
 
 
 @WebServlet(name = "login", urlPatterns = {"/login"})
@@ -29,7 +26,7 @@ public class Login extends HttpServlet {
         String nombreDeUsuario = request.getParameter("nombre_de_usuario");
         String password = request.getParameter("password");
         
-//        password = CryptoUtil.encode(password);
+        password = Encriptar.codificar(password);
 
         try {
             Connection conn = Conexion.getConnection();
@@ -38,7 +35,7 @@ public class Login extends HttpServlet {
             if (u != null) {
                 request.getSession().setAttribute("USUARIO_ACTUAL", u);
                 conn.close();
-                request.getRequestDispatcher("/vista/principal/index.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/vista/principal/index.jsp").forward(request, response);
             } else {
                 request.setAttribute("error", "Usuario Incorrecto o Contraseña incorrecta");
                 request.getRequestDispatcher("/login.jsp").forward(request, response);

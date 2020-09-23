@@ -23,7 +23,7 @@
 				<div class="row">
 					<div class="col"></div>
 					<div class ="col">
-						<p class="login_error"><%=request.getAttribute("error") == null ? "": request.getAttribute("error")%>
+						<p class="login_error"><%=request.getAttribute("error") == null ? "" : request.getAttribute("error")%>
                                                 </p>   
                                                 <button type="submit">Ingresar</button>
                                         </div>

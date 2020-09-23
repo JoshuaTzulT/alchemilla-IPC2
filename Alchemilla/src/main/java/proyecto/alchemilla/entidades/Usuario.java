@@ -1,11 +1,21 @@
 
-package proyecto.alchemilla.transferencias;
+package proyecto.alchemilla.entidades;
 
 public class Usuario {
     
     private String nombreDeUsuario;
     private String password;
     private String alias;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
 
     public String getNombreDeUsuario() {
         return nombreDeUsuario;
